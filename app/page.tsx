@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Search, ServerIcon, ShieldCheckIcon, StarHalfIcon, StarIcon, UserCheckIcon } from "lucide-react"
 import Image from "next/image"
-// import VideoPlayer from "@/components/VideoPlayer"
+import VideoPlayer from "@/components/VideoPlayer"
 
 export default function HomePage() {
   useEffect(() => {
@@ -15,10 +15,23 @@ export default function HomePage() {
       event.preventDefault();
     };
 
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (
+        event.key === 'F12' ||
+        (event.ctrlKey && event.shiftKey && event.key === 'I') ||
+        (event.ctrlKey && event.shiftKey && event.key === 'J') ||
+        (event.ctrlKey && event.key === 'U')
+      ) {
+        event.preventDefault();
+      }
+    };
+
     document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 
@@ -264,6 +277,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <VideoPlayer url="/demo.mp4" />
       <section className="w-full py-6 md:py-12 lg:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-2">Contact Us</h2>
