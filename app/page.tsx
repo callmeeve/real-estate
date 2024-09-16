@@ -1,11 +1,27 @@
+'use client'
+
 /* eslint-disable react/no-unescaped-entities */
+import { useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Search, ServerIcon, ShieldCheckIcon, StarHalfIcon, StarIcon, UserCheckIcon } from "lucide-react"
 import Image from "next/image"
+// import VideoPlayer from "@/components/VideoPlayer"
 
 export default function HomePage() {
+  useEffect(() => {
+    const handleContextMenu = (event: MouseEvent) => {
+      event.preventDefault();
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
+
   const properties = [
     {
       id: 1,

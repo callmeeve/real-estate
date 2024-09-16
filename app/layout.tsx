@@ -17,8 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-      >
+      <body className="no-select no-copy">
         <div className="flex flex-col min-h-screen">
           <header className="px-4 lg:px-6 h-14 flex items-center border-b">
             <Link href="/" className="text-lg font-bold">
